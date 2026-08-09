@@ -1,4 +1,4 @@
-# AE SD Repository Setup
+# AESD Repository Setup
 
 This Next.js app lets students click an assignment link and automatically create a repository in the GitHub organization `cu-ecen-aeld` using the minimum necessary OAuth step for identity, then uses a GitHub App installation token for the org automation.
 

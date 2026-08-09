@@ -14,7 +14,7 @@ const assignments = [
 export default function Home() {
   return (
     <main className="container">
-      <h1>AE SD Repository Setup</h1>
+      <h1>AESD Repository Setup</h1>
       <p>Select an assignment to create your repository in the GitHub organization.</p>
 
       <div className="grid">
