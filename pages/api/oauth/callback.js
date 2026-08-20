@@ -130,7 +130,17 @@ export default async function handler(req, res) {
 
     if (!createRepoResponse.ok) {
       const errorText = await createRepoResponse.text();
-      throw new Error(`Create repo failed: ${createRepoResponse.status} ${errorText}`);
+      let alreadyExists = false;
+      try {
+        const errorBody = JSON.parse(errorText);
+        alreadyExists = createRepoResponse.status === 422 &&
+          errorBody.errors?.some((e) => e.field === 'name');
+      } catch {
+        // not JSON, fall through to throw below
+      }
+      if (!alreadyExists) {
+        throw new Error(`Create repo failed: ${createRepoResponse.status} ${errorText}`);
+      }
     }
 
     const addCollaboratorResponse = await fetch(
